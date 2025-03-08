@@ -1,0 +1,134 @@
+/* General App Styling */
+.App {
+  background-color: rgba(255, 255, 0, 0.368);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Full screen height */
+  margin: 0;
+  padding: 30px;
+  width: 100vw;
+  color: black;
+}
+
+/* Card Container Styling */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;  /* Grey background for the entire card */
+  width: 50vw;  /* Responsive width */
+  height: 50vh;  /* Responsive height */
+  color: #333;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 25%;
+  text-align: center;
+}
+
+/* Header Styling */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 0px 0px 10px white, 0px 0px 20px white, 0px 0px 30px white; 
+}
+.header h1:hover{
+  text-shadow: none; 
+}
+.header p {
+  font-size: 1.5rem;
+}
+.header p:hover{
+  text-shadow: 0px 0px 10px white, 0px 0px 20px white, 0px 0px 30px white; 
+}
+/* Card Section */
+.card-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* .card {
+  background-color: black;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+} */
+
+.card-container:hover .card h3{
+  color: black;
+}
+.card h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-family: 'Press Start 2P', cursive;
+}
+.card:hover h3{
+  color: white;
+}
+.card h3:hover{
+  color: white;
+}
+.card .answer {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 1rem;
+  font-weight: 900;
+}
+
+.card .image{
+  width:5px;
+  height: 5px;
+}
+.logo{
+  width:20%;
+  height: 5%;
+  margin-left: 5%;
+}
+/* Button Styling */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+button {
+  background-color: rgba(255, 255, 0, 0.644);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 0, 0.644);
+}
+
+button + button {
+  background-color: rgba(255, 255, 0, 0.644);
+}
+
+button + button:hover {
+  background-color: green;
+}
+.card-container:hover button{
+  background-color: black;
+}
+.card-container:hover button:hover{
+  background-color: rgba(255, 255, 0, 0.368);
+  color: black;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 // Card Component that displays question and answer
-function Card({ question, answer, showAnswer, image,difficulty }) {
+function Card({ question, answer, showAnswer, image, difficulty }) {
   return (
     <div className="card">
       <h3>{question}</h3>
@@ -12,7 +12,6 @@ function Card({ question, answer, showAnswer, image,difficulty }) {
     </div>
   );
 }
-
 
 // App Component with logic for displaying cards and showing answers
 function App() {
@@ -28,7 +27,7 @@ function App() {
       question: "What programming language has this logo?",
       answer: "Golang",
       image: "public/Screenshot 2025-03-07 175429.png", // Example image path for JavaScript logo
-      difficulty: "difficult"
+      difficulty: "hard"
     },
     {
       question: "What programming language has this logo?",
@@ -42,7 +41,6 @@ function App() {
       image: "public/Screenshot 2025-03-07 175021.png", // Example image path for Ruby logo
       difficulty: "easy"
     },
-  
     // Regular Trivia Questions (remaining cards)
     { question: "Who created Python?", answer: "Guido van Rossum", difficulty: "hard" },
     { question: "When was JavaScript released?", answer: "1995", difficulty: "hard" },
@@ -55,22 +53,30 @@ function App() {
     { question: "In which year was C# created?", answer: "2000", difficulty: "hard" },
     { question: "When was Ruby on Rails released?", answer: "2004", difficulty: "hard" },
   ];
-  
 
-  // State to handle the current card index and visibility of the answer
+  // State to handle the current card index, visibility of the answer, last seen card, and hover state
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [lastSeenCardIndex, setLastSeenCardIndex] = useState(null); // Track the last seen card
   const [hovered, setHovered] = useState(false); // Add hovered state
 
-  // Function to show the next card in order (with wrap around to first card)
+  // Function to show the next random card
   const showNextCard = () => {
-    setCurrentCardIndex((prevIndex) => (prevIndex + 1) % triviaCards.length); // Wrap around to first card when reaching the last card
+    const randomIndex = Math.floor(Math.random() * triviaCards.length); // Generate a random index
+    setCurrentCardIndex(randomIndex); // Set the random card index
+    setLastSeenCardIndex(currentCardIndex); // Set the last seen card to the current one
     setShowAnswer(false); // Hide answer initially when going to the next card
   };
 
-  // Function to show the previous card (with wrap around to last card)
+  // Function to show the previous card (or last seen card, or default to last card in list)
   const showPreviousCard = () => {
-    setCurrentCardIndex((prevIndex) => (prevIndex - 1 + triviaCards.length) % triviaCards.length); // Wrap around to last card when going before the first card
+    if (lastSeenCardIndex === null) {
+      // If no card has been seen yet, show the last card by default
+      setCurrentCardIndex(triviaCards.length - 1);
+    } else {
+      // Otherwise, show the last seen card
+      setCurrentCardIndex(lastSeenCardIndex);
+    }
     setShowAnswer(false); // Hide answer when going to the previous card
   };
 
@@ -87,6 +93,7 @@ function App() {
       : (currentCard.difficulty === "easy" ? "black" : "black"), // Default background color
     transition: "background-color 0.3s ease-in-out", // Smooth transition for background color change
   };
+
   return (
     <div className="App">
       <header className="header">
@@ -106,7 +113,6 @@ function App() {
             showAnswer={showAnswer}
             image={currentCard.image} // Pass the image prop to the Card component
             difficulty={currentCard.difficulty}
-            containerStyle={containerStyle}
           />
         </section>
 
